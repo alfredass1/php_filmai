@@ -10,6 +10,11 @@ If (isset($_GET['page'])){
         case 'paieška':
             include ('templates/pages/search.page.php');
             break;
+        case 'prideti-filma':
+            include ('templates/add_movie.page.php');
+            break;
+
+
         default:
     }
 }else{
