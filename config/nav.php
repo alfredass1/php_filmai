@@ -1,17 +1,17 @@
 <?php
 $navigation = [
     'leftside' => [
-        'Visi' => "Visi filmai",
-        'Žanrai' => "Filmai pagal žanrą",
-        'Paieska' => "Paieška",
+        'visi' => "Visi filmai",
+        'zanrai' => "Filmai pagal žanrą",
+        'paieska' => "Paieška",
 
     ],
     'actions' => [
-        '/' => "Visi filmai",
+        '/' => "Pagrindinis",
         'apie' => "Apie projekta",
         'Dropdown' => [
-            'Filmu valdymas' => "Filmu valdymas",
-            'Žanru valdymas' => "Žanru valdymas",
+            'filmu_valdymas' => "Filmu valdymas",
+            'zanru_valdymas' => "Žanru valdymas",
         ]
     ]
 

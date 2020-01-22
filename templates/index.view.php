@@ -16,6 +16,8 @@
     <!-- Custom styles for this template -->
     <link href="templates/css/simple-sidebar.css" rel="stylesheet">
 
+    <link href="templates/css/style.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -27,13 +29,18 @@
     <?php include"_partials/header.view.php"?>
     <!-- Page Content -->
     <div id="page-content-wrapper">
-
-
         <?php include"_partials/nav.view.php"?>
+        <main class="container-fluid">
+            <?php
+                require($_SERVER['DOCUMENT_ROOT'].'/php_basics/php_filmai/config/router.php');
+                //echo $_SERVER['DOCUMENT_ROOT'].'/php_basics/php_filmai/config/router.php'
+
+            ?>
+        </main>
 
         <div class="container-fluid">
-            <h1 class="mt-4">Filmai</h1>
-            <p>Čia bus naujausi filmai</p>
+            <h1 class="mt-4">Apie projektą</h1>
+            <p>Filmų paieškos aplikacija</p>
         </div>
     </div>
     <!-- /#page-content-wrapper -->

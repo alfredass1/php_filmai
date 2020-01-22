@@ -1,7 +1,7 @@
 
 <!-- Sidebar -->
 <div class="bg-light border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading">Start Bootstrap </div>
+    <div class="sidebar-heading">Filmų duomenų bazė</div>
     <div class="list-group list-group-flush">
         <?php foreach ($navigation as $sritis => $pavadinimas): ?>
             <?php if ($sritis == 'leftside') :?>
