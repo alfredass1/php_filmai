@@ -1,7 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: moksleivis
- * Date: 2020-01-20
- * Time: 09:16
- */
+$dns= "mysql:host=$host;dbname=$db";
+try{
+    $conn = new PDO($dns, $username, $password, $options);
+    if($conn){
+
+        $stmt = $conn->query();04-++
+    }

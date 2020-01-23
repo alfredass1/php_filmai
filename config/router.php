@@ -2,21 +2,21 @@
 If (isset($_GET['page'])){
     switch (htmlspecialchars($_GET['page'])){
         case 'visi':
-            include ('templates/pages/all-movies-page.php');
+            include ('pages/all-movies-page.php');
             break;
-        case 'nauja-kategorija':
-            include ('templates/pages/add-genre-page.php');
+        case 'zanrai':
+            include ('pages/genres.page.php');
             break;
-        case 'paieška':
-            include ('templates/pages/search.page.php');
+        case 'paieska':
+            include ('pages/search.page.php');
             break;
-        case 'prideti-filma':
-            include ('templates/add_movie.page.php');
+        case 'filmu-valdymas':
+            include ('pages/add_films.page.php');
             break;
 
 
         default:
     }
 }else{
-    include ('templates/pages/main-page.php');
+    include ('pages/main-page.php');
 }

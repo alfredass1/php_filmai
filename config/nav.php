@@ -10,8 +10,8 @@ $navigation = [
         '/' => "Pagrindinis",
         'apie' => "Apie projekta",
         'Dropdown' => [
-            'filmu_valdymas' => "Filmu valdymas",
-            'zanru_valdymas' => "Žanru valdymas",
+            'filmu-valdymas' => "Filmu valdymas",
+            'zanru-valdymas' => "Žanru valdymas",
         ]
     ]
 
