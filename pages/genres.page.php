@@ -34,14 +34,6 @@ foreach ($filmuZanrai as $zanras): ?>
 <?php if (isset($_GET['id'])): ?>
     <table class="table table-bordered">
         <thead>
-        <tr>
-            <td>Filmo zanras</td>
-            <td>Filmo pavadinimas</td>
-            <td>Filmo aprasymas</td>
-            <td>Filmo rezisierius</td>
-            <td>Filmo sukurimo metai</td>
-
-        </tr>
         </thead>
         <tr>
             <?php
@@ -53,6 +45,8 @@ foreach ($filmuZanrai as $zanras): ?>
             <td><?=$pglzanra['aprasymas']; ?></td>
             <td><?=$pglzanra['rezisierius']; ?></td>
             <td><?=$pglzanra['metai']; ?></td>
+
+
 
 
         </tr>

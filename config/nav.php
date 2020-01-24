@@ -11,7 +11,7 @@ $navigation = [
         'apie' => "Apie projekta",
         'Dropdown' => [
             'filmu-valdymas' => "Filmu valdymas",
-            'zanru-valdymas' => "Žanru valdymas",
+            'kategoriju-valdymas' => "Kategoriju valdymas",
         ]
     ]
 

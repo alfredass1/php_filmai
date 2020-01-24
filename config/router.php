@@ -13,7 +13,12 @@ If (isset($_GET['page'])){
         case 'filmu-valdymas':
             include ('pages/add_films.page.php');
             break;
-
+        case 'filmo-redagavimas':
+            include ('pages/update_film.page.php');
+            break;
+        case 'filmo-salinimas':
+            include ('pages/delete_film.page.php');
+            break;
 
         default:
     }

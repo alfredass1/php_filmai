@@ -58,7 +58,7 @@ VALUES (:pavadinimas, :metai, :rezisierius, :imdb, :zanrai_id, :aprasymas)";
         try {
             $conn = new PDO($dsn, $username, $password, $options);
             if ($conn) {
-                $stmt = $conn->query(\"SELECT * FROM zanrai");
+                $stmt = $conn->query("SELECT * FROM zanrai");
                 $zanrai = $stmt->fetchAll();
             }
         } catch (PDOException $e) {

@@ -6,7 +6,7 @@ try{
     if ($conn){
 
         $stmt = $conn->query("SELECT filmai.pavadinimas, filmai.aprasymas,
-        filmai.metai, filmai.imdb, filmai.zanrai_id, filmai.rezisierius, zanrai.pavadinimas As zanroPavadinimas
+        filmai.metai, filmai.imdb, filmai.zanrai_id, filmai.rezisierius, zanrai.pavadinimas As zanro_Pavadinimas
         FROM filmai
         INNER JOIN zanrai ON filmai.zanrai_id=zanrai.id");
     $filmai = $stmt->fetchAll();
@@ -15,6 +15,7 @@ try{
 
     echo $e->getMessage();
 }?>
+<button type="submit" class="btn btn-primary" name="edit">Edit</button>
 <table class="table table-bordered">
     <tr>
         <?php
@@ -26,8 +27,10 @@ try{
         <td><?=$filmas['aprasymas'];?></td>
         <td><?=$filmas['metai'];?></td>
         <td><?=$filmas['rezisierius'];?></td>
-        <td><?=$filmas['zanrai_id'];?></td>
+        <td><?=$filmas['zanro_Pavadinimas'];?></td>
         <td><?=$filmas['imdb'];?></td>
+        <td><a href="?page=filmo-redagavimas&id=<?=$filmas['zanrai_id'];?>">Redaguoti</a></td>
+        <td><a href="?page=filmo-salinimas&id=<?=$filmas['zanrai_id'];?>">Salinti</a></td>
     </tr>
     <?php endforeach;;?>
 
