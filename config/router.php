@@ -11,7 +11,7 @@ If (isset($_GET['page'])){
             include ('pages/search.page.php');
             break;
         case 'filmu-valdymas':
-            include ('pages/add_films.page.php');
+            include ('pages/visi_filmai.php');
             break;
        case 'filmo-salinimas':
             include ('pages/delete_film.page.php');
@@ -20,10 +20,14 @@ If (isset($_GET['page'])){
             include ('pages/update_film.page.php');
             break;
         case 'zanru-valdymas':
-            include ('pages/add-genre-page.php');
+            include ('pages/visi_zanrai.php');
             break;
-
+        case'zanro-redagavimas':
+            include ('pages/update_genre.page.php');
         default:
+        case'zanro-salinimas':
+            include ('pages/delete_genre.page.php');
+
     }
 }else{
     include ('pages/main-page.php');

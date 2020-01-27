@@ -2,21 +2,25 @@
 
 <?php
 $dsn = "mysql:host=$host; dbname=$db";
-try{
 $conn = new PDO($dsn, $username, $password, $options);
+if (isset($_POST['submit'])) {
+    try {
         if ($conn) {
-            $sql = "INSERT INTO zanrai (pavadinimas)
+            $sql = "INSERT INTO zanrai(pavadinimas)
             VALUES (:pavadinimas)";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':pavadinimas', $_POST['pavadinimas'], PDO::PARAM_STR);
             $stmt->execute();
-            header('Location:/php_basics/php_filmai/?page=zanru-valdymas');
+            header('Location:/php_basics/php_filmai/?page=zanrai');
+
+
         }
 
     } catch (PDOException $e) {
 
-        echo $e->getMessage();
-    }
+    echo $e->getMessage();
+ }
+}
 ?>
 
 <form method="post">
