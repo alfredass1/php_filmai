@@ -38,17 +38,11 @@ foreach ($filmuZanrai as $zanras): ?>
         <tr>
             <?php
             foreach ($pagalzanra as $pglzanra): ?>
-
         <tr>
             <td><?=$pglzanra['zanroPavadinimas']; ?></td>
             <td><?=$pglzanra['pavadinimas']; ?></td>
             <td><?=$pglzanra['aprasymas']; ?></td>
             <td><?=$pglzanra['rezisierius']; ?></td>
-            <td><?=$pglzanra['metai']; ?></td>
-
-
-
-
         </tr>
         <?php endforeach; ?>
         </tr>

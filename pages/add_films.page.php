@@ -16,12 +16,14 @@ VALUES (:pavadinimas, :metai, :rezisierius, :imdb, :zanrai_id, :aprasymas)";
             $stmt->execute();
             header('Location:/php_basics/php_filmai/?page=visi');
         }
+
     } catch (PDOException $e) {
 
         echo $e->getMessage();
     }
 }
 ?>
+
 
 <h2>Filmo pridėjimas</h2>
 <form method="post">
@@ -74,35 +76,8 @@ VALUES (:pavadinimas, :metai, :rezisierius, :imdb, :zanrai_id, :aprasymas)";
     </div>
     <div>
         <label for="about">Filmo aprašymas</label>
-        <input type="text" class="form-control" id="about" placeholder="Filmo aprašymas" name="about">
+        <input type="text" class="form-control" id="about" placeholder="Filmo aprašymas" name="notes">
     </div>
 
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
 </form>
-
-
-<?php
-
-$validation_errors = [];
-if (isset($_POST['submit'])) {
-    if (!preg_match('/\w{1,45}$/',
-        trim(htmlspecialchars($_POST['movie_title'])))) {
-        $validation_errors[] = "Vedant filmo pavadinimą, negalima vesti specialiuju simboliu.";
-    }
-    if (!preg_match('/\w{1,45}$/',
-        trim(htmlspecialchars($_POST['director'])))) {
-        $validation_errors[] = "Įveskite tik režisieriaus vardą ir pavardę";
-    }
-}
-?>
-
-<?php if ($validation_errors) : ?>
-    <div class="errors">
-        <ul>
-            <?php foreach ($validation_errors as $error) : ?>
-                <li><?= $error; ?></li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-
-<?php endif; ?>

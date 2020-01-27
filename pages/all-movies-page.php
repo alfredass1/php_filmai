@@ -5,7 +5,7 @@ try{
     $conn = new PDO ($dsn, $username, $password,$options);
     if ($conn){
 
-        $stmt = $conn->query("SELECT filmai.pavadinimas, filmai.aprasymas,
+        $stmt = $conn->query("SELECT filmai.pavadinimas, filmai.aprasymas, filmai.id,
         filmai.metai, filmai.imdb, filmai.zanrai_id, filmai.rezisierius, zanrai.pavadinimas As zanro_Pavadinimas
         FROM filmai
         INNER JOIN zanrai ON filmai.zanrai_id=zanrai.id");
@@ -15,7 +15,6 @@ try{
 
     echo $e->getMessage();
 }?>
-<button type="submit" class="btn btn-primary" name="edit">Edit</button>
 <table class="table table-bordered">
     <tr>
         <?php
@@ -29,8 +28,8 @@ try{
         <td><?=$filmas['rezisierius'];?></td>
         <td><?=$filmas['zanro_Pavadinimas'];?></td>
         <td><?=$filmas['imdb'];?></td>
-        <td><a href="?page=filmo-redagavimas&id=<?=$filmas['zanrai_id'];?>">Redaguoti</a></td>
-        <td><a href="?page=filmo-salinimas&id=<?=$filmas['zanrai_id'];?>">Salinti</a></td>
+        <td><a href="?page=filmo-redagavimas&id=<?=$filmas['id'];?>">Redaguoti</a></td>
+        <td><a href="?page=filmo-salinimas&id=<?=$filmas['id'];?>">Salinti</a></td>
     </tr>
     <?php endforeach;;?>
 

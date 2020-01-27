@@ -2,28 +2,34 @@
 <?php
 $dsn= "mysql:host=$host; dbname=$db";
 try{
-    $conn = new PDO ($dsn, $username, $password,$options);
-    if ($conn){
+    $conn = new PDO($dsn, $username, $password);
+    if($conn){
+        $thisId = $_GET['id'];
 
-        $stmt = $conn->query("SELECT filmai.pavadinimas, filmai.aprasymas,
-        filmai.metai, filmai.imdb, filmai.zanrai_id, filmai.rezisierius, zanrai.pavadinimas As zanro_Pavadinimas
-        FROM filmai
-        INNER JOIN zanrai ON filmai.zanrai_id=zanrai.id");
+        $stmt = $conn->query("SELECT filmai.id as movies_id, filmai.pavadinimas, filmai.metai, filmai.rezisierius, filmai.imdb,
+                                        filmai.aprasymas, filmai.zanrai_id, zanrai.id, zanrai.pavadinimas as genre_name FROM filmai
+                                        INNER JOIN  zanrai ON filmai.zanrai_id=zanrai.id
+                                        WHERE filmai.id=$thisId");
         $filmai = $stmt->fetch();
+
     }
 }catch (PDOException $e){
 
     echo $e->getMessage();
+
 }?>
 
+<?php if (isset($_POST['submit'])){
+    try {
+        if ($conn){
 
-<?php
           $sql = "UPDATE filmai SET pavadinimas = :pavadinimas,
             aprasymas = :aprasymas,
             metai = :metai,
             rezisierius = :rezisierius,
             imdb = :imdb,
-            WHERE zanrai.id = :zanrai_id";
+            pavadinimas = :pavadinimas";
+
 
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':pavadinimas', $_POST['movie_title'], PDO::PARAM_STR);
@@ -31,7 +37,7 @@ try{
             $stmt->bindParam(':rezisierius', $_POST['director'], PDO::PARAM_STR);
             $stmt->bindParam(':imdb', $_POST['movie_rating'], PDO::PARAM_STR);
             $stmt->bindParam(':zanrai_id', $_POST['genres_id'], PDO::PARAM_STR);
-            $stmt->bindParam(':aprasymas', $_POST['about'], PDO::PARAM_STR);
+            $stmt->bindParam(':aprasymas', $_POST['notes'], PDO::PARAM_STR);
             $stmt->execute();
 
         }
@@ -45,15 +51,15 @@ try{
 <form method="post">
     <div class="form-group">
         <label for="Movie_name">Pavadinimas</label>
-        <input type="text" class="form-control" id="pavadinimas" value="<?=$dsn['movie_title']?>" placeholder="Pavadinimas" name="movie_title">
+        <input type="text" class="form-control" id="pavadinimas" value="<?=$filmai['pavadinimas']?>" placeholder="Pavadinimas" name="movie_title">
     </div>
     <div class="form-group">
         <label for="director">Director</label>
-        <input type="text" class="form-control" id="Director" placeholder="Director" name="director">
+        <input type="text" class="form-control" id="Director" value="<?=$filmai['rezisierius']?>" placeholder="Director" name="director">
     </div>
     <div class="form-group">
         <label for="movie_rating">Metai</label>
-        <select class="form-control form-control-sm" name="movie_date">
+        <select class="form-control form-control-sm" value="<?=$filmai['metai']?>" name="movie_date">
             <?php
             for ($i = 1900; $i < 2021; $i++):?>
                 <option><?= $i ?></option>
@@ -61,14 +67,13 @@ try{
         </select>
         <div class="form-group">
             <label for="Movie_date">IMDB</label>
-            <select class="form-control form-control-sm" name="movie_rating">
+            <select class="form-control form-control-sm" value="<?=$filmai['imdb']?>" name="movie_rating">
                 <?php
                 for ($i = 10; $i <= 100; $i++):?>
                     <option><?= $i / 10 ?></option>
                 <?php endfor; ?>
             </select>
         </div>
-        <!--        <input type="number" class="form-control" id="movie_rating" placeholder="IMDB Score" name="imdb_score" maxlength=3>-->
     </div>
     <div class="form-group">
         <?php
@@ -92,35 +97,12 @@ try{
     </div>
     <div>
         <label for="about">Filmo aprašymas</label>
-        <input type="text" class="form-control" id="about" placeholder="Filmo aprašymas" name="about">
+        <input type="text" class="form-control" id="about" value="<?=$filmai['aprasymas']?>" placeholder="Filmo aprašymas" name="notes">
     </div>
 
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
 </form>
 
 <?php
-$validation_errors = [];
-if (isset($_POST['submit'])) {
-    if (!preg_match('/\w{1,45}$/',
-        trim(htmlspecialchars($_POST['movie_title'])))) {
-        $validation_errors[] = "Vedant filmo pavadinimą, negalima vesti specialiuju simboliu.";
-    }
-    if (!preg_match('/\w{1,45}$/',
-        trim(htmlspecialchars($_POST['director'])))) {
-        $validation_errors[] = "Įveskite tik režisieriaus vardą ir pavardę";
-    }
-}
-?>
-
-<?php if ($validation_errors) : ?>
-    <div class="errors">
-        <ul>
-            <?php foreach ($validation_errors as $error) : ?>
-                <li><?= $error; ?></li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-
-<?php endif; ?>
 
 
