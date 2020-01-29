@@ -1,25 +1,26 @@
 <?php
-$dns= "mysql:host=$host;dbname=$db";
-try{
-    $conn = new PDO($dns, $username, $password, $options);
-    if($conn){
-        $stmt = $conn->query("SELECT * FROM zanrai");
-        $filmuZanrai = $stmt->fetchAll();
+prisijungti();
+$filmuZanrai = visiZanrai();
+?>
 
-        }
 
-    }
-catch (PDOException $e) {
-    echo $e->getMessage();
-} ?>
+<?php
+if (isset($_POST['submit'])){
+    header('Location:/php_basics/php_filmai/?page=prideti-zanra');
+}
+?>
+
+
+<form method="post">
+    <button type="submit" class="btn btn-primary" name="submit">Pridėti žanrą</button>
+</form>
 <table class="table table-bordered">
-    <?php foreach ($filmuZanrai as $pglzanra):?>
+    <?php foreach ($filmuZanrai as $pglzanra): ?>
 
-            <td><?=$pglzanra['id']; ?></td>
-            <td><?=$pglzanra['pavadinimas']; ?></td>
-            <td><a href="?page=filmo-redagavimas&id=<?=$pglzanra['id'];?>">Redaguoti</a></td>
-            <td><a href="?page=filmo-salinimas&id=<?=$pglzanra['id'];?>">Salinti</a></td>
+        <td><?= $pglzanra['id']; ?></td>
+        <td><?= $pglzanra['zanro_pavadinimas']; ?></td>
+        <td><a href="?page=zanro-salinimas&id=<?= $pglzanra['id']; ?>">Salinti</a></td>
         </tr>
-        <?php endforeach; ?>
-        </tr>
-    </table>
+    <?php endforeach; ?>
+    </tr>
+</table>

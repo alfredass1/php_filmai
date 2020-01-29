@@ -1,3 +1,4 @@
+
 <?php
 $dsn = "mysql:host=$host; dbname=$db";
 $conn = new PDO($dsn, $username, $password, $options);
@@ -70,7 +71,7 @@ VALUES (:pavadinimas, :metai, :rezisierius, :imdb, :zanrai_id, :aprasymas)";
         <select class="form-control form-control-sm" name="genres_id">
             <?php
             foreach ($zanrai as $zanras):?>
-                <option value="<?= $zanras['id'] ?>"><?= $zanras['pavadinimas'] ?></option>
+                <option value="<?= $zanras['id'] ?>"><?= $zanras['zanro_pavadinimas'] ?></option>
             <?php endforeach; ?>
         </select>
     </div>

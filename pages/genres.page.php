@@ -9,7 +9,7 @@ try{
         if (isset($_GET['id'])){
             $zid = $_GET['id'];
             $stmt = $conn->query("SELECT filmai.pavadinimas, filmai.aprasymas, 
-                              filmai.metai, filmai.rezisierius, zanrai.pavadinimas AS zanroPavadinimas
+                              filmai.metai, filmai.rezisierius, zanrai.zanro_pavadinimas
                               FROM filmai 
                               INNER JOIN zanrai ON filmai.zanrai_id=zanrai.id
                               WHERE $zid=zanrai.id");
@@ -28,7 +28,7 @@ try{
 foreach ($filmuZanrai as $zanras): ?>
 
     <ul class="list-group">
-        <li class="list-group-item"><a href="?page=zanrai&id=<?=$zanras['id']; ?>"><?=$zanras['pavadinimas']; ?></a></li>
+        <li class="list-group-item"><a href="?page=zanrai&id=<?=$zanras['id']; ?>"><?=$zanras['zanro_pavadinimas']; ?></a></li>
     </ul>
 <?php endforeach; ?>
 <?php if (isset($_GET['id'])): ?>
@@ -39,7 +39,7 @@ foreach ($filmuZanrai as $zanras): ?>
             <?php
             foreach ($pagalzanra as $pglzanra): ?>
         <tr>
-            <td><?=$pglzanra['zanroPavadinimas']; ?></td>
+            <td><?=$pglzanra['zanro_pavadinimas']; ?></td>
             <td><?=$pglzanra['pavadinimas']; ?></td>
             <td><?=$pglzanra['aprasymas']; ?></td>
             <td><?=$pglzanra['rezisierius']; ?></td>

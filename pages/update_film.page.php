@@ -1,13 +1,13 @@
 <h2>Filmo Redagavimas</h2>
 <?php
 $dsn= "mysql:host=$host; dbname=$db";
-try{
-    $conn = new PDO($dsn, $username, $password);
+    try{
+        $conn = new PDO($dsn, $username, $password);
     if($conn){
         $thisId = $_GET['id'];
 
         $stmt = $conn->query("SELECT filmai.id as movies_id, filmai.pavadinimas, filmai.metai, filmai.rezisierius, filmai.imdb,
-                                        filmai.aprasymas, filmai.zanrai_id, zanrai.id, zanrai.pavadinimas as genre_name FROM filmai
+                                        filmai.aprasymas, filmai.zanrai_id, zanrai.id, zanrai.zanro_pavadinimas FROM filmai
                                         INNER JOIN  zanrai ON filmai.zanrai_id=zanrai.id
                                         WHERE filmai.id=$thisId");
         $filmai = $stmt->fetch();
@@ -91,7 +91,7 @@ try{
         <select class="form-control form-control-sm" name="genres_id">
             <?php
             foreach ($zanrai as $zanras):?>
-                <option value="<?= $zanras['id'] ?>"><?= $zanras['pavadinimas'] ?></option>
+                <option value="<?= $zanras['id'] ?>"><?= $zanras['zanro_pavadinimas'] ?></option>
             <?php endforeach; ?>
         </select>
     </div>

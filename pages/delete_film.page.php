@@ -7,7 +7,7 @@ try{
     if($conn){
         $thisId = $_GET['id'];
         $stmt = $conn->query("SELECT filmai.id as movies_id, filmai.pavadinimas, filmai.metai, filmai.rezisierius, filmai.imdb,
-                                        filmai.aprasymas, filmai.zanrai_id, zanrai.id, zanrai.pavadinimas as genre_name FROM filmai
+                                        filmai.aprasymas, filmai.zanrai_id, zanrai.id, zanrai.zanro_pavadinimas FROM filmai
                                         INNER JOIN  zanrai ON filmai.zanrai_id=zanrai.id
                                         WHERE filmai.id=$thisId");
         $filmai = $stmt->fetchAll();
@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
         <td><?=$filmas['metai'];?></td>
         <td><?=$filmas['rezisierius'];?></td>
         <td><?=$filmas['imdb'];?></td>
-        <td><?=$filmas['genre_name'];?></td>
+        <td><?=$filmas['zanro_pavadinimas'];?></td>
         <td><?=$filmas['aprasymas'];?></td>
     </tr>
     <?php endforeach;?>

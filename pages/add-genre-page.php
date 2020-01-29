@@ -6,7 +6,7 @@ $conn = new PDO($dsn, $username, $password, $options);
 if (isset($_POST['submit'])) {
     try {
         if ($conn) {
-            $sql = "INSERT INTO zanrai(pavadinimas)
+            $sql = "INSERT INTO zanrai(zanro_pavadinimas)
             VALUES (:pavadinimas)";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':pavadinimas', $_POST['pavadinimas'], PDO::PARAM_STR);

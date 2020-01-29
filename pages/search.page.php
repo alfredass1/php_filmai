@@ -39,7 +39,7 @@ if (isset($_POST['search'])) :?>
                                         aprasymas FROM filmai
                                         WHERE pavadinimas like '%$searchIT%'");
     $filmams = $uzklausa->fetchAll();
-    $uzklausa->bindValue(1, "%$searchIT%", PDO::PARAM_STR); // Ką reiškia ši eilutė?
+    $uzklausa->bindValue(1, "%$searchIT%", PDO::PARAM_STR);
     ?>
 
     <table class="table table-bordered">
