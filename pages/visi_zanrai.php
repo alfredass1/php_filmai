@@ -16,8 +16,6 @@ if (isset($_POST['submit'])){
 </form>
 <table class="table table-bordered">
     <?php foreach ($filmuZanrai as $pglzanra): ?>
-
-        <td><?= $pglzanra['id']; ?></td>
         <td><?= $pglzanra['zanro_pavadinimas']; ?></td>
         <td><a href="?page=zanro-salinimas&id=<?= $pglzanra['id']; ?>">Salinti</a></td>
         </tr>
